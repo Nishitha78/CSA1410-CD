@@ -1,0 +1,23 @@
+#include <stdio.h>
+int main() {
+    FILE *fp;
+    char ch;
+    int whitespace_count = 0, newline_count = 0;
+    fp = fopen("sample.txt", "r");
+    if (fp == NULL) {
+        printf("Error opening file.\n");
+        return 1;
+    }
+    while ((ch = fgetc(fp)) != EOF) {
+        if (ch == ' ' || ch == '\t') {
+            whitespace_count++;
+        }
+        else if (ch == '\n') {
+            newline_count++;
+        }
+    }
+    fclose(fp);
+    printf("Number of whitespaces: %d\n", whitespace_count);
+    printf("Number of newlines: %d\n", newline_count);
+    return 0;
+}
