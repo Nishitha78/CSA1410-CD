@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+struct Statement {
+    char lhs[10];
+    char rhs[50];
+};
+int main() {
+    struct Statement code[MAX];
+    int n;
+    printf("Enter number of statements: ");
+    scanf("%d", &n);
+    printf("Enter the statements in form: LHS = RHS\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%s = %s", code[i].lhs, code[i].rhs);
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (strcmp(code[i].rhs, code[j].rhs) == 0) {
+                // Replace later LHS with the earlier LHS variable
+                strcpy(code[j].rhs, code[i].lhs);
+            }
+        }
+    }
+    printf("\nOptimized Code:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%s = %s\n", code[i].lhs, code[i].rhs);
+    }
+    return 0;
+}
